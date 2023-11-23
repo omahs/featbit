@@ -16,7 +16,7 @@ on:
         required: true
 
 env:
-  LATEST_TAG: latest-test
+  LATEST_TAG: latest
   VERSION_TAG: ${{ github.event.inputs.version || github.ref_name }}
   APP_UI: featbit-ui
   APP_API: featbit-api-server
