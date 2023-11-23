@@ -64,7 +64,6 @@ jobs:
 
       - name: Build and push - UI (latest)
         if: github.ref == 'refs/heads/main'
-        run: echo "build and push ui latest"
         uses: docker/build-push-action@v3
         with:
           context: "{{defaultContext}}:modules/front-end"
