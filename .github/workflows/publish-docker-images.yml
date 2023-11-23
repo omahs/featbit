@@ -52,7 +52,6 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
 
       - name: Build and push - UI (current)
-        run: echo "build and push ui current"
         uses: docker/build-push-action@v3
         with:
           context: "{{defaultContext}}:modules/front-end"
