@@ -46,17 +46,42 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - name: Dump job context
+        env:
+          JOB_CONTEXT: ${{ toJson(job) }}
+        run: echo "$JOB_CONTEXT"
+      - name: Dump steps context
+        env:
+          STEPS_CONTEXT: ${{ toJson(steps) }}
+        run: echo "$STEPS_CONTEXT"
+      - name: Dump runner context
+        env:
+          RUNNER_CONTEXT: ${{ toJson(runner) }}
+        run: echo "$RUNNER_CONTEXT"
+      - name: Dump strategy context
+        env:
+          STRATEGY_CONTEXT: ${{ toJson(strategy) }}
+        run: echo "$STRATEGY_CONTEXT"
+      - name: Dump matrix context
+        env:
+          MATRIX_CONTEXT: ${{ toJson(matrix) }}
+        run: echo "$MATRIX_CONTEXT"
+
       - name: Build and push - UI (current)
         run: echo "build and push ui current"
-#        uses: docker/build-push-action@v3
-#        with:
-#          context: "{{defaultContext}}:modules/front-end"
-#          file: ./Dockerfile
-#          platforms: linux/amd64,linux/arm64
-#          push: true
-#          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.APP_UI }}:${{ env.VERSION_TAG }}
-#          cache-from: type=gha
-#          cache-to: type=gha,mode=max
+      #        uses: docker/build-push-action@v3
+      #        with:
+      #          context: "{{defaultContext}}:modules/front-end"
+      #          file: ./Dockerfile
+      #          platforms: linux/amd64,linux/arm64
+      #          push: true
+      #          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.APP_UI }}:${{ env.VERSION_TAG }}
+      #          cache-from: type=gha
+      #          cache-to: type=gha,mode=max
 
       - name: Build and push - UI (latest)
         if: github.ref == 'refs/heads/main'
